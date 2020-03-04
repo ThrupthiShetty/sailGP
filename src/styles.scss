@@ -1,0 +1,423 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+*{
+    margin:0px;
+    padding: 0px;
+}
+
+body{
+background: #fafafa;
+color: "#fff";
+font-family: 'Lato', sans-serif;
+font-size: 14px;
+line-height: 21px;
+}
+
+.cardcontainer{
+    margin-top: 20px;
+}
+
+
+.container{
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.headerContainer{
+    max-width: 1600px !important;
+    margin: 0 auto;
+    
+    
+}
+
+
+#header{
+    background: #000;
+    padding: 10px 20px;
+}
+
+.card{
+    -webkit-box-shadow: 1px 0px 13px -6px rgba(0,0,0,0.91);
+    -moz-box-shadow: 1px 0px 13px -6px rgba(0,0,0,0.91);
+    box-shadow: 1px 0px 13px -6px rgba(0, 0, 0, 0.91);
+    background: #fff;
+    text-align: left;
+    font-size: 14px;
+    /*height: 250px;
+    overflow-y: scroll;*/
+    min-height: 330px;
+    padding: 15px;
+    padding-top: 7px;
+    border-radius: 5px;
+    .headingMain{
+        font-weight: bold;
+        font-size:18px
+    }
+    
+    .heading{
+        font-weight: bold;
+        font-size: 14px;
+    }
+    
+    .cardrow{
+    color: #727272;
+    padding-top:5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #d8d8d8;
+    font-size: 12px;
+    img{
+        border-bottom: 1px solid #d8d8d8;
+    }
+    }
+    
+    .cardrow:last-child{
+        border-bottom: none;
+        padding-bottom: 0px;
+    }
+
+  .mat-form-field {
+        border: 1px solid #e23b25;
+        padding: 3px !important;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-weight: bold;
+        width: auto;
+    }
+
+    .mat-form-field, .mat-form-field-appearance-legacy .mat-form-field-wrapper{
+        padding: 2px !important;
+    }
+
+.mat-form-field-infix{
+    border-top:none !important;
+}
+
+    .mat-select-arrow {
+        border: none !important;
+    background: url(assets/images/Dropdown.svg);
+    width: 25px !important;
+    height: 25px !important;
+    color: #e23b25;
+    border-radius: 50%;
+    position: absolute;
+    right: 0px;
+    top: -5px;
+    }
+   
+
+    .selectcontainer{
+        display: flex;
+        justify-content: flex-end;
+        mat-select{
+            font-style: italic;
+            text-transform: uppercase;
+        }
+    }
+
+    .mat-form-field-underline{
+        display: none
+    }
+    
+}
+
+
+
+.cardtwo{
+    -webkit-box-shadow: 1px 0px 13px -6px rgba(0,0,0,0.91);
+    -moz-box-shadow: 1px 0px 13px -6px rgba(0,0,0,0.91);
+    box-shadow: 1px 0px 13px -6px rgba(0, 0, 0, 0.91);
+    background: #fff;
+    text-align: left;
+    font-size: 14px;
+    height: 250px;
+    overflow-y: scroll;
+    padding: 20px;
+    border-radius: 5px;
+    .headingMain{
+        font-weight: bold;
+        font-size:18px;
+        margin-bottom: 20px;
+    }
+    
+    .heading{
+        font-weight: bold;
+        font-size: 16px;
+    }
+    
+    .eventdetailsrow{
+    color: #727272;
+    font-size: 14px;
+    }
+
+    .eventdetailsrowmain{
+        border-bottom: 1px solid #d8d8d8;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+    }
+
+   
+    .eventdetailsrowhead{
+        color:#e23b25;
+        font-size: 14px;
+        margin-top:10px;
+
+    }
+
+    
+   
+}
+
+.cardtwo .cardMain:last-child .eventdetailsrowmain{
+    border-bottom: none;
+    padding-bottom: 0px;
+}
+.cardthree{
+    -webkit-box-shadow: 1px 0px 13px -6px rgba(0,0,0,0.91);
+    -moz-box-shadow: 1px 0px 13px -6px rgba(0,0,0,0.91);
+    box-shadow: 1px 0px 13px -6px rgba(0, 0, 0, 0.91);
+    background: #fff;
+    text-align: left;
+    font-size: 14px;
+    /*height: 250px;
+    overflow-y: scroll;*/
+    min-height: 360px;
+    padding: 20px;
+    border-radius: 5px;
+    .headingMain{
+        font-weight: bold;
+        font-size:18px;
+        margin-bottom: 10px;
+    }
+    
+    .heading{
+        font-weight: bold;
+        font-size: 16px;
+    }
+    
+    .eventdetailsrow{
+    color: #727272;
+    font-size: 14px;
+    }
+
+    .eventdetailsrowmain{
+        border-bottom: 1px solid #d8d8d8;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+    }
+    .cardMain:last-child .eventdetailsrowmain{
+        border-bottom: none;
+    }
+    .eventdetailsrowhead{
+        color:#e23b25;
+        font-size: 14px;
+        margin-top:10px;
+
+    }
+    
+  
+}
+
+.middleblock{
+    text-align: center;
+}
+
+.select{
+    .mat-form-field{
+        width:100%;
+        border: 1px solid #e23b25;
+        padding: 5px 10px;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-weight: bold;
+        color: "#000"
+    }
+    
+    .selectedbox{
+        width:100%;
+        border: 1px solid #e23b25;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-weight: bold;
+        color: "#000";
+        outline: none
+    }
+    
+    
+    .mat-form-field-infix{
+        border: none
+    }
+    
+    .mat-form-field-underline{
+        display: none
+    }
+    
+    .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+        padding-bottom: 0px;
+    }
+}
+
+
+
+.statsheading{
+    font-size: 24px;
+    text-align: left;
+    padding-left: 25px;
+    padding-right: 20px;
+    margin-bottom: 15px;
+ }
+ 
+ .speedheading {
+    font-size: 20px;
+    text-align: left;
+    padding-left: 13px;
+    padding-right: 20px;
+    margin-bottom: 10px;
+ }
+
+.select{
+    margin-top: 20px;
+}
+
+.mat-select-value{
+    color: "#000"
+}
+
+.mat-select-arrow{
+    border: none !important;
+    background:url(assets/images/Dropdown.svg);
+    width: 25px !important;
+    height: 25px !important;
+    color: #e23b25;
+    border-radius: 50%;
+    position: absolute;
+    right: 0px;
+    top: -5px;
+}
+
+.mat-select-arrow-wrapper {
+    display: table-cell;
+    padding: 5px;    
+    border-radius: 50%;
+    position: relative;
+}
+
+.mat-form-field-label{
+    display: none;
+
+}
+
+.teamdetailscontainer{
+    padding:20px;
+    
+}
+
+.teamdetails{
+    -webkit-box-shadow: 1px 0px 13px -6px rgba(0,0,0,0.91);
+    -moz-box-shadow: 1px 0px 13px -6px rgba(0,0,0,0.91);
+    box-shadow: 1px 0px 13px -6px rgba(0, 0, 0, 0.91);
+    background: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.title{
+    color: #489FA2
+}
+
+.wrap{
+    flex-wrap: wrap
+}
+
+.tname {
+    color: #e23b25;
+    font-size: 18px;
+    align-items: flex-start;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 5px;
+ }
+.mat-form-field-label{
+    color: #000 !important
+}
+.teams{
+    position: relative;
+    text-align: left;
+}
+.teamName{
+    -webkit-clip-path:polygon(0 0, 92% 0%, 88% 100%, 0% 100%);
+    clip-path: polygon(0 0, 92% 0%, 88% 100%, 0% 100%);
+    width: 80%;
+    padding: 10px;
+    background: rgba(226, 59, 37, 0.7);
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    position: absolute;
+    font-style: italic;
+    bottom: 5px;
+    font-size: 21px;
+}
+
+.timage{
+    position: relative;
+}
+
+.teamsnames{
+    text-align: left;
+    line-height: 24px
+}
+
+.numberrows{
+    margin-bottom: 6px;
+    font-size: 14px;
+    border-bottom: 1px solid #f5f5f5;
+    padding-bottom: 5px;
+ }
+
+.numbertitles{
+    color: #489FA2
+}
+
+.red{
+    color: #e23b25;
+}
+
+.mat-form-field{
+    padding-top: 20px!important;
+}
+
+.noleg{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    color: #a9a9a9;
+}
+
+.noteam{
+    color: #a9a9a9;
+    text-align: center;
+    margin-top:20px;
+}
+
+.raceradio {
+    margin-right: 10px;
+}
+
+.raceradiogroup{
+    display:flex;
+    margin-top:10px;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+
+.mat-radio-label{
+    color: #727272
+}
+

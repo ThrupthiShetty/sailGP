@@ -1,0 +1,380 @@
+<div class="container">
+    <div class="cards">
+        <div fxLayout="row" fxLayoutGap="40px" fxLayoutAlign="center center" class="cardcontainer" fxLayout.lt-sm="column">
+            <!-- CARD ONE -->
+            <div fxFlex="0 1 calc(33.3% - 40px)" fxFlex.lt-md="0 1 calc(33.3% - 40px)" fxFlex.lt-sm="100%">
+                <div fxLayout="column">
+                    <div class="speedheading">All Time Top Speed</div>
+                    <div class="card" *ngIf="topSpeedData.alltimeTopSpeeds?.length > 0">
+
+                        <!-- row -->
+                        <div *ngFor="let  obj of topSpeedData.alltimeTopSpeeds " class="cardrow" fxLayout="row"
+                            fxLayoutGap="20px">
+                            <div class="icon" fxFlex="0 1 calc(10% - 20px)"><img src="assets/images/boat{{obj.country}}.png"
+                                    width="38"></div>
+                            <div class="content" fxFlex="0 1 calc(90% - 20px)">
+                                <div class="contentrow">
+                                    <div class="heading">{{obj.country}}</div>
+                                    <div class="detailsrow" fxLayout="row" fxLayoutGap="10px">
+                                        <div class="detailsrowC" fxFlex="0 1 calc(50% - 10px)" *ngIf="obj.maxBoatSpeed!= null">{{obj.maxBoatSpeed
+                                            |
+                                            number:'.1-2'}}kn</div>
+                                        <!-- <div class="detailsrowC" fxFlex="0 1 calc(23.3% - 10px)">{{obj.maxBoatSpeed |  number:'.1-2'}}m</div> -->
+                                        <div class="detailsrowC" fxFlex="0 1 calc(50% - 10px)" *ngIf="obj.maxBoatSpeedDateTime!= null">{{formatDate(obj.maxBoatSpeedDateTime)}}</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- row -->
+                    </div>
+
+                </div>
+            </div>
+            <!-- CARD ONE -->
+            <!-- CARD TWO -->
+
+            <div fxFlex="0 1 calc(33.3% - 40px)" fxFlex.lt-md="0 1 calc(33.3% - 40px)" fxFlex.lt-sm="100%">
+                <div fxLayout="column">
+                    <div class="speedheading">Regatta Top Speed</div>
+                    <div class="card" *ngIf="topSpeedData.eventTopSpeeds?.length > 0">
+                        <!-- <mat-radio-group
+                                aria-labelledby="raceradiogroup"
+                                class="raceradiogroup"
+                                [(ngModel)]="selectedevent">
+                               <mat-radio-button class="example-radio-button" *ngFor="let eventspeedD of topSpeedData.eventTopSpeeds" [value]="eventspeedD.boats" >
+                                       {{eventspeedD.name}}
+                               </mat-radio-button>
+                             </mat-radio-group> -->
+                        <!-- row -->
+                        <div class="selectcontainer">
+                            <mat-form-field [floatLabel]="'never'">
+                                <mat-label class="label">Select Team</mat-label>
+                                <mat-select [(ngModel)]="selectedevent" (selectionChange)="sortEventTopspped($event)">
+                                    <mat-option style="font-style:italic;" *ngFor="let eventspeedD of topSpeedData.eventTopSpeeds"
+                                        [value]="eventspeedD.boats">
+                                        {{eventspeedD.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+
+                        <div *ngIf="selectedevent.length>0">
+
+                            <div *ngFor="let  speeDObj of selectedevent " class="cardrow" fxLayout="row" fxLayoutGap="20px">
+                                <div class="icon" fxFlex="0 1 calc(10% - 20px)"><img src="assets/images/boat{{speeDObj.country}}.png"
+                                        width="38"></div>
+                                <div class="content" fxFlex="0 1 calc(90% - 20px)">
+                                    <div class="contentrow">
+                                        <div class="heading"> {{speeDObj.country}}</div>
+                                        <div class="detailsrow" fxLayout="row" fxLayoutGap="10px">
+                                            <div class="detailsrowC" fxFlex="0 1 calc(50% - 10px)" *ngIf="speeDObj.maxBoatSpeed!= null">{{speeDObj.maxBoatSpeed
+                                                |
+                                                number:'.1-2'}}kn</div>
+                                            <!-- <div class="detailsrowC" fxFlex="0 1 calc(23.3% - 10px)">{{obj.maxBoatSpeed |  number:'.1-2'}}m</div> -->
+                                            <div class="detailsrowC" fxFlex="0 1 calc(50% - 10px)" *ngIf="speeDObj.maxBoatSpeedDateTime!= null">{{formatDate(speeDObj.maxBoatSpeedDateTime)}}</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="noleg" *ngIf="selectedevent.length==0" style="padding-top: 150px;color: #a9a9a9;">
+                            No Records Found For This Event
+                        </div>
+                        <!-- row -->
+                    </div>
+
+                </div>
+            </div>
+            <!-- CARD TWO -->
+            <!-- CARD THREE -->
+            <div fxFlex="0 1 calc(33.3% - 40px)" fxFlex.lt-md="0 1 calc(33.3% - 40px)" fxFlex.lt-sm="100%">
+                <div fxLayout="column">
+                    <div class="speedheading">Daily Top Speed</div>
+                    <div class="card" *ngIf="topSpeedData.alltimeTopSpeeds?.length > 0">
+
+                        <!-- row -->
+                        <div *ngFor="let  obj of topSpeedData.currentTopSpeeds " class="cardrow" fxLayout="row"
+                            fxLayoutGap="20px">
+                            <div class="icon" fxFlex="0 1 calc(10% - 20px)"><img src="assets/images/boat{{obj.country}}.png"
+                                    width="38"></div>
+                            <div class="content" fxFlex="0 1 calc(90% - 20px)">
+                                <div class="contentrow">
+                                    <div class="heading">{{obj.country}}</div>
+                                    <div class="detailsrow" fxLayout="row" fxLayoutGap="10px">
+                                        <div class="detailsrowC" fxFlex="0 1 calc(50% - 10px)" *ngIf="obj.maxBoatSpeed!= null">{{obj.maxBoatSpeed
+                                            |
+                                            number:'.1-2'}}kn</div>
+                                        <div class="detailsrowC" fxFlex="0 1 calc(50% - 10px)" *ngIf="obj.maxBoatSpeed== null">
+                                            - </div>
+                                        <!-- <div class="detailsrowC" fxFlex="0 1 calc(23.3% - 10px)">{{obj.maxBoatSpeed |  number:'.1-2'}}m</div> -->
+                                        <div class="detailsrowC" fxFlex="0 1 calc(50% - 10px)" *ngIf="obj.maxBoatSpeedDateTime!= null">{{formatDate(obj.maxBoatSpeedDateTime)}}</div>
+                                        <div class="detailsrowC" fxFlex="0 1 calc(50% - 10px)" *ngIf="obj.maxBoatSpeedDateTime== null">-</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- row -->
+                    </div>
+
+                </div>
+            </div>
+            <!-- CARD ONE -->
+        </div>
+    </div>
+
+    <div class="select">
+        <div class="statsheading">
+            <!-- Stats Display -->
+        </div>
+        <div fxLayout="row" fxLayoutGap="40px" fxLayoutAlign="center center" class="" fxLayout.lt-sm="column">
+            <div fxFlex="0 1 calc(50% - 40px)" fxFlex.lt-md="0 1 calc(50% - 40px)" fxFlex.lt-sm="100%">
+
+                <!-- <mat-form-field [floatLabel]="'never'"> -->
+                <mat-form-field>
+                    <mat-label class="label">Select Regatta</mat-label>
+                    <mat-select [(ngModel)]="selectedRaceEvent" (ngModelChange)="getRaceEventDetails($event)">
+                        <mat-option *ngFor="let raceEvent of raceEvents" [value]="raceEvent">
+                            {{raceEvent.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
+            </div>
+            <div class="selectoptions" fxFlex="0 1 calc(50% - 40px)" fxFlex.lt-md="0 1 calc(50% - 40px)" fxFlex.lt-sm="100%">
+                <mat-form-field>
+                    <mat-label>Select Race</mat-label>
+                    <mat-select [(ngModel)]="selectedrace" (ngModelChange)="getRaceDetails($event)">
+                        <mat-option *ngFor="let race of races" [value]="race">
+                            {{race.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <div class="teamdetailscontainer">
+        <div *ngIf="raceTeams.length == 0" class="noteam">No Stats Available</div>
+        <div class="teamdetails" *ngFor="let  team of raceTeams">
+
+
+            <div fxLayout="row" fxLayoutGap="20px" class="" fxLayout.lt-sm="column" fxLayoutAlign="">
+                <div class="teams" fxFlex="0 1 calc(35% - 20px)" fxFlex.lt-md="0 1 calc(35% - 20px)" fxFlex.lt-sm="100%">
+                    <div class="timage"><img src="assets/images/{{team.country}}.png" width="100%">
+                        <div class="teamName"> {{team.name}}</div>
+                    </div>
+
+                    <div fxLayout="column" class="tname">
+
+                        Team:
+                    </div>
+                    <div fxLayout="column">
+                        <div fxLayout="row" fxLayoutGap="10px" fxLayout.lt-sm="column" class="wrap">
+                            <div class="teamsnames " fxFlex="0 1 calc(33.3% - 15px)" fxFlex.lt-md="0 1 calc(33.3% - 15px)"
+                                fxFlex.lt-sm="100%" *ngFor="let member of team.crewMembers">
+                                {{member.fullName}}
+                            </div>
+                            <!-- <div class="teamsnames " fxFlex="0 1 calc(33.3% - 40px)" fxFlex.lt-md="0 1 calc(33.3% - 40px)"
+                                    fxFlex.lt-sm="100%">
+                                    Rome Kirby
+                                </div>
+                                <div class="teamsnames " fxFlex="0 1 calc(33.3% - 40px)" fxFlex.lt-md="0 1 calc(33.3% - 40px)"
+                                    fxFlex.lt-sm="100%">
+                                    Rome Kirby
+                                </div>
+                                <div class="teamsnames " fxFlex="0 1 calc(33.3% - 40px)" fxFlex.lt-md="0 1 calc(33.3% - 40px)"
+                                    fxFlex.lt-sm="100%">
+                                    Rome Kirby
+                                </div>
+                                <div class="teamsnames " fxFlex="0 1 calc(33.3% - 40px)" fxFlex.lt-md="0 1 calc(33.3% - 40px)"
+                                    fxFlex.lt-sm="100%">
+                                    Rome Kirby
+                                </div>
+                                <div class="teamsnames " fxFlex="0 1 calc(33.3% - 40px)" fxFlex.lt-md="0 1 calc(33.3% - 40px)"
+                                    fxFlex.lt-sm="100%">
+                                    Rome Kirby
+                                </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="teams" *ngIf="team.formatedstats.length>0" fxFlex="0 1 calc(65% - 20px)" fxFlex.lt-md="0 1 calc(65% - 20px)"
+                    fxFlex.lt-sm="100%">
+                    <div fxLayout="row" fxLayoutGap="10px" class="numberrows" fxLayout.lt-sm="column">
+                        <div class="teams red" fxLayoutAlign="left center" fxFlex="0 1 calc(20% - 10px)" fxFlex.lt-md="0 1 calc(30% - 10px)">
+                            Stat
+                        </div>
+                        <div class="teams red" fxFlex="0 1 calc(11.44% - 10px)" fxFlex.lt-md="0 1 calc(11.44% - 10px)"
+                            *ngFor="let leg of team.formatedstats">
+                            {{leg.name | titlecase }}
+                        </div>
+                    </div>
+                    <!-- <div fxLayout="row" fxLayoutGap="10px" class="numberrows" fxLayout.lt-sm="column">
+                            <div class="numbertitles" fxLayoutAlign="" fxFlex="0 1 calc(20% - 10px)" fxFlex.lt-md="0 1 calc(30% - 10px)">
+                                Number of Tacks
+                            </div>
+                            <div class="teams"  fxFlex="0 1 calc(11.44% - 10px)" fxFlex.lt-md="0 1 calc(11.44% - 10px)" *ngFor="let  leg of team.formatedstats" 
+                            [ngStyle]="{'font-weight':team.maxTacks == leg.value.numberOfTacks ? '600' : '200', 'color':team.maxTacks == leg.value.numberOfTacks ? '#e23b25' : '#000000' }">
+                                {{leg.value.numberOfTacks}}
+                               
+                            </div>
+        
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px" class="numberrows" fxLayout.lt-sm="column">
+                            <div class="numbertitles" fxLayoutAlign="left center" fxFlex="0 1 calc(20% - 10px)" fxFlex.lt-md="0 1 calc(30% - 10px)">
+                                Number of Gybes
+                            </div>
+                            <div  *ngFor="let  leg of team.formatedstats" class="teams" fxFlex="0 1 calc(11.44% - 10px)"
+                                fxFlex.lt-md="0 1 calc(11.44% - 10px)" 
+                                [ngStyle]="{'font-weight':team.maxGybes == leg.value.numberOfGybes ? '600' : '200', 'color':team.maxGybes == leg.value.numberOfGybes ? '#e23b25' : '#000000' }">
+                                {{leg.value.numberOfGybes}}
+                            </div>
+        
+                        </div> -->
+                    <div fxLayout="row" fxLayoutGap="10px" class="numberrows" fxLayout.lt-sm="column">
+                        <div class="numbertitles" fxLayoutAlign="left center" fxFlex="0 1 calc(20% - 10px)"
+                            fxFlex.lt-md="0 1 calc(30% - 10px)">
+                            Number of Maneuvers
+                        </div>
+                        <div *ngFor="let  leg of team.formatedstats" class="teams" fxFlex="0 1 calc(11.44% - 10px)"
+                            fxFlex.lt-md="0 1 calc(11.44% - 10px)" [ngStyle]="{'font-weight':team.maxmaneuvers == (leg.value.numberOfGybes+leg.value.numberOfTacks) && team.maxmaneuvers!=0 ? '600' : '200', 'color':team.maxmaneuvers == (leg.value.numberOfGybes+leg.value.numberOfTacks) && team.maxmaneuvers!=0? '#e23b25' : '#000000' }">
+                            {{leg.value.numberOfTacks + leg.value.numberOfGybes }}
+                        </div>
+
+                    </div>
+                    <!-- <div fxLayout="row" fxLayoutGap="10px" class="numberrows" fxLayout.lt-sm="column">
+                            <div class="numbertitles" fxLayoutAlign="left center" fxFlex="0 1 calc(20% - 10px)" fxFlex.lt-md="0 1 calc(30% - 10px)">
+                                Max SoG
+                            </div>
+                            <div *ngFor="let  leg of team.formatedstats" class="teams" fxFlex="0 1 calc(11.44% - 10px)"
+                                fxFlex.lt-md="0 1 calc(11.44% - 10px)"
+                                [ngStyle]="{'font-weight':team.maxSog == leg.value.maxSoG ? '600' : '200', 'color':team.maxSog == leg.value.maxSoG ? '#e23b25' : '#000000' }">
+                                {{leg.value.maxSoG | number:'.1-2'}}
+                            </div>
+        
+                        </div> -->
+                    <div fxLayout="row" fxLayoutGap="10px" class="numberrows" fxLayout.lt-sm="column">
+                        <div class="numbertitles" fxLayoutAlign="left center" fxFlex="0 1 calc(20% - 10px)"
+                            fxFlex.lt-md="0 1 calc(30% - 10px)">
+                            Max Boat Speed(kn)
+                        </div>
+                        <div *ngFor="let  leg of team.formatedstats" class="teams" fxFlex="0 1 calc(11.44% - 10px)"
+                            fxFlex.lt-md="0 1 calc(11.44% - 10px)" [ngStyle]="{'font-weight':team.maxBoatSpeed == leg.value.maxBoatSpeed && team.maxBoatSpeed !='0.0' ? '600' : '200', 'color':team.maxBoatSpeed == leg.value.maxBoatSpeed && team.maxBoatSpeed !='0.0' ? '#e23b25' : '#000000' }">
+                            {{leg.value.maxBoatSpeed | number:'.1-2'}}
+                        </div>
+
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="10px" class="numberrows" fxLayout.lt-sm="column">
+                        <div class="numbertitles" fxLayoutAlign="left center" fxFlex="0 1 calc(20% - 10px)"
+                            fxFlex.lt-md="0 1 calc(30% - 10px)">
+                            Duration
+                        </div>
+                        <div *ngFor="let  leg of team.formatedstats" class="teams" fxFlex="0 1 calc(11.44% - 10px)"
+                            fxFlex.lt-md="0 1 calc(11.44% - 10px)" [ngStyle]="{'font-weight':team.maxDuration == leg.value.duration ? '600' : '200', 'color':team.maxDuration == leg.value.duration ? '#e23b25' : '#000000' }">
+                            <!-- {{leg.value.duration | number:'.1-2'}} -->
+                            {{getFormatedLegduration(leg.value.duration)}}
+                        </div>
+
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="10px" class="numberrows" fxLayout.lt-sm="column">
+                        <div class="numbertitles" fxLayoutAlign="left center" fxFlex="0 1 calc(20% - 10px)"
+                            fxFlex.lt-md="0 1 calc(30% - 10px)">
+                            Foil Time
+                        </div>
+                        <div *ngFor="let  leg of team.formatedstats" class="teams" fxFlex="0 1 calc(11.44% - 10px)"
+                            fxFlex.lt-md="0 1 calc(11.44% - 10px)" [ngStyle]="{'font-weight':team.maxfoilTime == leg.value.foilTime && team.maxfoilTime!=0 ? '600' : '200', 'color':team.maxfoilTime == leg.value.foilTime && team.maxfoilTime!=0  ? '#e23b25' : '#000000' }">
+                            {{getFormatedLegduration(leg.value.foilTime)}}
+                        </div>
+
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="10px" class="numberrows" fxLayout.lt-sm="column">
+                        <div class="numbertitles" fxLayoutAlign="left center" fxFlex="0 1 calc(20% - 10px)"
+                            fxFlex.lt-md="0 1 calc(30% - 10px)">
+                            Distance Sailed
+                        </div>
+                        <div *ngFor="let  leg of team.formatedstats" class="teams" fxFlex="0 1 calc(11.44% - 10px)"
+                            fxFlex.lt-md="0 1 calc(11.44% - 10px)" [ngStyle]="{'font-weight':team.maxdistanceSailed == leg.value.distanceSailed && team.maxdistanceSailed!=0 ? '600' : '200', 'color':team.maxdistanceSailed == leg.value.distanceSailed && team.maxdistanceSailed!=0 ? '#e23b25' : '#000000'}">
+                            {{leg.value.distanceSailed | number:'.1-2'}}
+                        </div>
+
+                    </div>
+                    <div fxLayoutGap="10px" class="numberrows" fxLayout.lt-sm="column" *ngIf="team.formatedstats.length>0" style="border:1px solid #cacaca;padding: 10px;">
+
+                        <div fxLayout="row" fxLayoutGap="10px" class="numberrows" fxLayout.lt-sm="column">
+                            <div class="teams red" fxFlex="0 1 calc(16.44% - 10px)" fxFlex.lt-md="0 1 calc(11.44% - 10px)">
+
+                            </div>
+                            <div class="teams red" fxFlex="0 1 calc(16.44% - 10px)" fxFlex.lt-md="0 1 calc(11.44% - 10px)">
+                                Number of Maneuvers
+                            </div>
+                            <div class="teams red" fxFlex="0 1 calc(16.44% - 10px)" fxFlex.lt-md="0 1 calc(11.44% - 10px)">
+                                Max Boat Speed(kn)
+                            </div>
+                            <div class="teams red" fxFlex="0 1 calc(16.44% - 10px)" fxFlex.lt-md="0 1 calc(11.44% - 10px)">
+                                Duration
+                            </div>
+                            <div class="teams red" fxFlex="0 1 calc(16.44% - 10px)" fxFlex.lt-md="0 1 calc(11.44% - 10px)">
+                                Foil Time
+                            </div>
+                            <div class="teams red" fxFlex="0 1 calc(16.44% - 10px)" fxFlex.lt-md="0 1 calc(11.44% - 10px)">
+                                Distance Sailed
+                            </div>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px" class="numberrows" fxLayout.lt-sm="column">
+                            <div style="font-weight: 600" class="teams" fxFlex="0 1 calc(16.44% - 10px)" fxFlex.lt-md="0 1 calc(11.44% - 10px)">
+                                Summary
+                            </div>
+                            <div class="teams" fxFlex="0 1 calc(16.44% - 10px)" fxFlex.lt-md="0 1 calc(11.44% - 10px)">
+                                {{team.stats.race.numberOfTacks + team.stats.race.numberOfGybes}}
+                            </div>
+                            <div class="teams" fxFlex="0 1 calc(16.44% - 10px)" fxFlex.lt-md="0 1 calc(11.44% - 10px)">
+                                {{team.stats.race.maxBoatSpeed | number:'.1-2'}}
+                            </div>
+                            <div class="teams" fxFlex="0 1 calc(16.44% - 10px)" fxFlex.lt-md="0 1 calc(11.44% - 10px)">
+                                {{getFormatedLegduration(team.stats.race.duration)}}
+                            </div>
+                            <div class="teams" fxFlex="0 1 calc(16.44% - 10px)" fxFlex.lt-md="0 1 calc(11.44% - 10px)">
+                                {{getFormatedLegduration(team.stats.race.foilTime)}}
+                            </div>
+                            <div class="teams" fxFlex="0 1 calc(16.44% - 10px)" fxFlex.lt-md="0 1 calc(11.44% - 10px)">
+                                {{team.stats.race.distanceSailed | number:'.1-2'}}
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="noleg" *ngIf="team.formatedstats.length==0" fxFlex="0 1 calc(65% - 20px)" fxFlex.lt-md="0 1 calc(65% - 20px)"
+                    fxFlex.lt-sm="100%">
+                    No Leg data found
+                </div>
+            </div>
+       
+            <!-- <mat-card class="example-card">
+                    <mat-card-header>
+                        <mat-card-title>{{team.country}}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+        
+                        <div *ngIf="team.stats.race">
+                            Race: {{team.stats.race.numberOfTacks}}
+                        </div>
+                        <div *ngIf="team.stats.legs">
+                            Leg1: {{team.stats.leg1.numberOfTacks}}
+                        </div>
+                    </mat-card-content>
+        
+                </mat-card> -->
+        </div>
+
+    </div>
+</div>
